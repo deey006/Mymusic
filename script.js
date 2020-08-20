@@ -12,11 +12,18 @@ const durationEl =  document.getElementById("duration")
 
 // music
 const songs = [
-    {name:'jacinto-1', displayName:'Electric Chill Machine', artiste:'Jacinto Design'},
-    {name:'jacinto-2', displayName:'Seven Nation Army', artiste:'Jacinto Design'},
-    {name:'jacinto-3', displayName:'Goodnight disco queen', artiste:'Jacinto Design'},
-    {name:'metric-1', displayName:'Front Row', artiste:'Metric'},
-
+    {name:'1. Hatin on the Club', displayName:'1. Hatin on the Club', artiste:'Rihanna'},
+    {name:'jacinto-1', displayName:'2. Electric Chill Machine', artiste:'Jacinto Design'},
+    {name:'2. Level Up (Twice As Tall)', displayName:'2. Level Up (Twice As Tall)', artiste:'BurnaBoy'},
+    {name:'3. Diamonds', displayName:'3. Diamonds', artiste:'Rihanna'},
+    {name:'4. exile (feat. Bon Iver)', displayName:'4. exile (feat. Bon Iver)', artiste:'Taylor Swift (feat. Bon Iver)'},
+    {name:'5. Drunk On Love', displayName:'5. Drunk On Love', artiste:'Rihanna'},
+    {name:'6. Akon feat. Gven Stefani - The Sweet Escape', displayName:'The Sweet Escape', artiste:'Akon feat. Gven Stefani'},
+    {name:'7. Seven', displayName:'7. Seven', artiste:'Taylor Swift'},
+    {name:'8. California', displayName:'8. California ', artiste:'Lana del ray'},
+    {name:'9. Coldplay - Yellow', displayName:'9. Yellow', artiste:'Coldplay'},
+    {name:'10. Enya - Flora s secret', displayName:'10. Flora s secret', artiste:'Enya'},
+    {name:'11. hymn-for-the-weekend', displayName:'11. hymn-for-the-weekend', artiste:'Coldplay (Beyonce)'},
 ]
 
 
@@ -104,11 +111,18 @@ function updateProgressBar (e){
        }
 
 }
-music.onseeking = function() {
-    alert("Seek operation began!");
-};
+
+function setProgress (e) {
+    const width = this.clientWidth;
+    const x =e.offsetX;
+    const {duration} = music;
+    music.currentTime = (x / width) * duration
+}
+
 
 prevBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
+music.addEventListener('ended', nextSong)
 music.addEventListener('timeupdate', updateProgressBar)
+progressContainer.addEventListener('click', setProgress)
 
